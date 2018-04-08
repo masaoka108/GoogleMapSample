@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79FD17FBD2627406974B2672 /* Pods_GoogleMapSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6283810C1950090F885367AC /* Pods_GoogleMapSample.framework */; };
 		CE3DC2E62079B86B004704D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC2E52079B86B004704D3 /* AppDelegate.swift */; };
 		CE3DC2E82079B86B004704D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC2E72079B86B004704D3 /* ViewController.swift */; };
 		CE3DC2EB2079B86B004704D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE3DC2E92079B86B004704D3 /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		CE3DC2FB2079B86B004704D3 /* GoogleMapSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC2FA2079B86B004704D3 /* GoogleMapSampleTests.swift */; };
 		CE3DC3062079B86C004704D3 /* GoogleMapSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC3052079B86C004704D3 /* GoogleMapSampleUITests.swift */; };
 		CE3DC3142079B881004704D3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE3DC3132079B881004704D3 /* Podfile */; };
-		CEE0AEB50340BF14723F63BF /* libPods-GoogleMapSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195327FEDB74C22A9EC94F4F /* libPods-GoogleMapSample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		195327FEDB74C22A9EC94F4F /* libPods-GoogleMapSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoogleMapSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CB99ED25895AECC77C01ED /* Pods-GoogleMapSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMapSample/Pods-GoogleMapSample.release.xcconfig"; sourceTree = "<group>"; };
+		6283810C1950090F885367AC /* Pods_GoogleMapSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleMapSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3EC35B1F167F4E804897DC7 /* Pods-GoogleMapSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMapSample/Pods-GoogleMapSample.debug.xcconfig"; sourceTree = "<group>"; };
 		CE3DC2E22079B86B004704D3 /* GoogleMapSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3DC2E52079B86B004704D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		CE3DC3012079B86B004704D3 /* GoogleMapSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleMapSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3DC3052079B86C004704D3 /* GoogleMapSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapSampleUITests.swift; sourceTree = "<group>"; };
 		CE3DC3072079B86C004704D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE3DC3132079B881004704D3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		CE3DC3132079B881004704D3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE0AEB50340BF14723F63BF /* libPods-GoogleMapSample.a in Frameworks */,
+				79FD17FBD2627406974B2672 /* Pods_GoogleMapSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +93,7 @@
 		A630F8065881845A6C703A83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				195327FEDB74C22A9EC94F4F /* libPods-GoogleMapSample.a */,
+				6283810C1950090F885367AC /* Pods_GoogleMapSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -327,9 +327,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GoogleMapSample/Pods-GoogleMapSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -521,10 +526,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -540,10 +542,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -559,11 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -580,11 +575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -600,11 +591,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -620,11 +607,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8Z6GJBUFD;
 				INFOPLIST_FILE = GoogleMapSampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hiliberate.GoogleMapSampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

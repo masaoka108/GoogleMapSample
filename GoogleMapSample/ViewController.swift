@@ -8,6 +8,8 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import SwiftyJSON
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -17,16 +19,8 @@ class ViewController: UIViewController {
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
 
-    // An array to hold the list of likely places.
-    var likelyPlaces: [GMSPlace] = []
-
-    // The currently selected place.
-    var selectedPlace: GMSPlace?
-
     // A default location to use when location permission is not granted.
     let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +49,9 @@ class ViewController: UIViewController {
         view.addSubview(mapView)
         mapView.isHidden = true
 
+        mapView.delegate = self
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,10 +59,72 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func drawPath(startLocation: CLLocation, endLocation: CLLocation)
+    {
+        let origin = "\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)"
+        let destination = "\(endLocation.coordinate.latitude),\(endLocation.coordinate.longitude)"
+        
+        
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+        
+        Alamofire.request(url).responseJSON { response in
+            
+            print(response.request as Any)  // original URL request
+            print(response.response as Any) // HTTP URL response
+            print(response.data as Any)     // server data
+            print(response.result as Any)   // result of response serialization
+            
+            
+            do {
+                //                try methodA()
+                //            let json = JSON(data: response.data!)
+                let json =  try JSON(data: response.data!)
+                
+                let routes = json["routes"].arrayValue
+                
+                // print route using Polyline
+                for route in routes
+                {
+                    let routeOverviewPolyline = route["overview_polyline"].dictionary
+                    let points = routeOverviewPolyline?["points"]?.stringValue
+                    let path = GMSPath.init(fromEncodedPath: points!)
+                    let polyline = GMSPolyline.init(path: path)
+                    polyline.strokeWidth = 4
+                    polyline.strokeColor = UIColor.red
+                    polyline.map = self.mapView
+                }
+                
+            } catch {
+                // エラー処理
+            }
+        }
+    }
+
 
 }
 
 
+extension ViewController: GMSMapViewDelegate {
+    
+    //マップをタッチした時
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
+        
+        // タップした地点にマークを表示
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+        mapView.clear() // clearing Pin before adding new
+        let marker = GMSMarker(position: coordinate)
+        marker.map = mapView
+        
+        
+        // directionを表示
+        let locationStart = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let locationEnd = CLLocation(latitude: 35.68930221099, longitude: 139.699440076947) //新宿駅
+        drawPath(startLocation: locationStart, endLocation: locationEnd)
+
+    }
+}
+    
+    
 // Delegates to handle events for the location manager.
 extension ViewController: CLLocationManagerDelegate {
 
@@ -84,9 +143,15 @@ extension ViewController: CLLocationManagerDelegate {
         } else {
             mapView.animate(to: camera)
         }
+
+//        // Markerを配置
+//        let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let marker = GMSMarker(position: position)
+//        marker.title = "Hello World"
+//        marker.map = mapView
         
     }
-
+        
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
